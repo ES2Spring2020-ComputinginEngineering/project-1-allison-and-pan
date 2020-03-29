@@ -7,7 +7,7 @@ import scipy.signal as sig
 import scipy.constants as cons
 
 # GLOBAL VARIABLES
-path = "/Users/allisoncremer/Documents/GitHub/project-1-allison-and-pan/Step 3"
+path = "/Users/allisoncremer/Documents/GitHub/project1-backupdata"
 
 # CUSTON FUNCTIONS
 def create_acceleration_array(fin):
@@ -63,11 +63,11 @@ os.chdir(path)
   
   
   
-data34cm = np.loadtxt('dataset1_34cm.csv.webloc', delimiter=',')
-data43cm = np.loadtxt('dataset2_43cm.csv.webloc', delimiter=',')
-data53cm = np.loadtxt('dataset3_53cm.csv.webloc', delimiter=',')
-data62cm = np.loadtxt('dataset4_62cm.csv.webloc', delimiter=',')
-data72cm = np.loadtxt('dataset5_72cm.csv.webloc', delimiter=',')
+data34cm = np.loadtxt('dataset1_34cm.csv', delimiter=',')
+data43cm = np.loadtxt('dataset2_43cm.csv', delimiter=',')
+data53cm = np.loadtxt('dataset3_53cm.csv', delimiter=',')
+data62cm = np.loadtxt('dataset4_62cm.csv', delimiter=',')
+data72cm = np.loadtxt('dataset5_72cm.csv', delimiter=',')
 
 #Crop arrays to clean data rows
 data34cm =  data34cm[500:1300,:]

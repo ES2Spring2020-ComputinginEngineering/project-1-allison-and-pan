@@ -9,7 +9,7 @@ import math
 import numpy as np
 
 # GLOBAL VARIABLES
-lengths=[]
+lengths=[.34,.43,.53,.62,.72]
 lengths_array=np.array(lengths)
 
 # CUSTOM FUNCTIONS
@@ -26,8 +26,18 @@ def swing_period(lengths):
 def graph_values(lengths,periods):
     # graph_values takes an array of lengths and an array of periods as parameters
     # graphs length vs period for a theoretical model
-    plt.plot(periods, lengths)
-    plt.axis([0,100,0,100])
+    plt.plot(lengths, periods)
+    plt.ylabel("Period(s)")
+    plt.xlabel("Length (m)")
+    plt.axis([0,1,0,2])
     plt.show()
+    
+periods=swing_period(lengths)
+print("The period for 34 cm is: ",periods[0])
+print("The period for 43 cm is: ",periods[1])
+print("The period for 53 cm is: ",periods[2])
+print("The period for 62 cm is: ",periods[3])
+print("The period for 72 cm is: ",periods[4])
+graph_values(lengths, periods)
     
     
