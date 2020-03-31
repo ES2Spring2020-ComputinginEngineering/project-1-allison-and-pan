@@ -9,7 +9,7 @@ import scipy.constants as cons
 # GLOBAL VARIABLES
 path = "/Users/allisoncremer/Documents/GitHub/project1-backupdata"
 
-# CUSTON FUNCTIONS
+# CUSTOM FUNCTIONS
 def create_acceleration_array(fin):
     array = np.loadtxt(fin, delimiter=',')
     print(array)
@@ -28,41 +28,32 @@ def create_angle_array(arr):
     array=np.array([timelist,thetalist])
     return array
 
+def calculate_average_period(thetaarr, timearr):
+    thetaarr=sig.medfilt(thetaarr)
+    peaks=sig.find_peaks(thetaarr)
+    periodtotal=0
+    count=0
+    for i in range(len(peaks[0])-2):
+        index1=int(peaks[0][i])
+        time1=timearr[index1]
+        index2=int(peaks[0][i+1])
+        time2=timearr[index2]
+        period=time2-time1
+        while period<1 and i<len(peaks[0])-2:
+            i+=1
+            time2=timearr[peaks[0][i+1]]
+            period=time2-time1
+        periodtotal+=period
+        count+=1
+    averageperiod=periodtotal/count
+    return averageperiod
+
+
 
 
 # MAIN
 os.chdir(path)
-#newarr=create_acceleration_array('46cm.csv')
-#otherarr=create_angle_array(newarr)
-#timelist=[]
-#xlist=[]
-#ylist=[]
-#zlist=[]
 
-#for lst in newarr:
-  #  timelist.append(lst[0])
-#for lst in newarr:
-  #  xlist.append(lst[1])
-#for lst in newarr:
-   # ylist.append(lst[2])
-#for lst in newarr:
-  #  zlist.append(lst[3])
-
-#plt.plot(timelist,xlist)
-#plt.show()
-#plt.plot(timelist,ylist)
-#plt.show()
-#plt.plot(timelist,zlist)
-#plt.show()
-    
-
-# HOW TO MAKE THETA GRAPHS
-#plt.plot(otherarr[0],otherarr[1])
-#plt.axis(xmin=0,xmax=20000,ymin=-.1,ymax=.1)
-#plt.show()
-  
-  
-  
 data34cm = np.loadtxt('dataset1_34cm.csv', delimiter=',')
 data43cm = np.loadtxt('dataset2_43cm.csv', delimiter=',')
 data53cm = np.loadtxt('dataset3_53cm.csv', delimiter=',')
@@ -182,3 +173,9 @@ ax4.set_ylabel ('Theta (rad)')
 plt.xlabel('Time (s)')
 plt.tight_layout()
 plt.show()
+
+print("The period for 34 cm is",calculate_average_period(sig.medfilt(theta34),data34cm[:,0]))
+print("The period for 43 cm is",calculate_average_period(sig.medfilt(theta43),data43cm[:,0]))
+print("The period for 53 cm is",calculate_average_period(sig.medfilt(theta53),data53cm[:,0]))
+print("The period for 62 cm is",calculate_average_period(sig.medfilt(theta62),data62cm[:,0]))
+print("The period for 72 cm is",calculate_average_period(sig.medfilt(theta72),data72cm[:,0]))
