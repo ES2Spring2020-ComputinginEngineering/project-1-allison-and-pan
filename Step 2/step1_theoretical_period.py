@@ -1,7 +1,8 @@
 # Step Two of Project 1
 # Allison and Pan
 # This file graphs the theoretical periods vs. lengths of  the pendulum
-# We worked alone on this assignment
+# and calculates the theoretical period for each pendulum length
+
 
 # IMPORT STATEMENTS
 import matplotlib.pyplot as plt

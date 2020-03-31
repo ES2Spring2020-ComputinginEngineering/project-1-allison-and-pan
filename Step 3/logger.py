@@ -1,5 +1,8 @@
 ##################
-# FILL IN HEADER
+# Allison and Pan (Group 4)
+# Step 3 of Project 1
+# This file logs the accelerometer data from the microbit pendulum as it is swinging
+
 #################
 
 import microbit as mb
