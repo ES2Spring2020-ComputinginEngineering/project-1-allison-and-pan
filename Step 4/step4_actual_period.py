@@ -1,3 +1,10 @@
+# Step  4 of Project 1
+# Allison and Pan (Group 4)
+# This file graphs acceleration vs time and theta vs time for each
+# of the different pendulum lengths, and calculation the real-life period
+# for each pendulum length
+# Used Backup data and Code for this part of the project
+
 # IMPORT STATEMENTS
 import os
 import numpy as np
@@ -10,13 +17,23 @@ import scipy.constants as cons
 path = "/Users/allisoncremer/Documents/GitHub/project1-backupdata"
 
 # CUSTOM FUNCTIONS
+
 def create_acceleration_array(fin):
+    # create_acceleration_array creates an array with the acceleration values
+    # listed in the data file imported from mu (parameter)
+    # returns the array of acceleration values
+    # **edit: this function was used with our original data, before we 
+    # decided to use the backup code to replace our high-error data
     array = np.loadtxt(fin, delimiter=',')
     print(array)
     return array
 
-
 def create_angle_array(arr):
+    # create_angle_array takes in an array of accelerations as a parameter
+    # and calculates the angle for each acceleration
+    # returns an array of the calculated angles
+    # **edit: this function was used with our original data, before we 
+    # decided to use the backup code to replace our high-error data
     timelist=[]
     thetalist=[]
     array=[]
@@ -29,6 +46,11 @@ def create_angle_array(arr):
     return array
 
 def calculate_average_period(thetaarr, timearr):
+    # calculate_average_period takes in an array of angles and an array
+    # of time values as parameters
+    # calculates the average period by finding the maximum angle values and 
+    # the time between these angle values (filtering out false positives)
+    # returns the average period for a pendulum length
     thetaarr=sig.medfilt(thetaarr)
     peaks=sig.find_peaks(thetaarr)
     periodtotal=0
@@ -88,7 +110,7 @@ data53cm[:, 1:3] =  data53cm[:, 1:3]*cons.g
 data62cm[:, 1:3] =  data62cm[:, 1:3]*cons.g
 data72cm[:, 1:3] =  data72cm[:, 1:3]*cons.g
 
-#Graphs of Accelerations and Theta
+#Graphs of Accelerations and Theta for each pendulum length
 fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, figsize=[10,8], sharex=True)
 ax1.plot(data34cm[:,0], data34cm[:,1], "#9467bd")
 ax1.set_title('X Accel vs Time, Length 34cm')
