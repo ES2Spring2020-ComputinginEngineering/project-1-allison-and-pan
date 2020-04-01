@@ -7,17 +7,17 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-import scipy.signal as sig
+#import scipy.signal as sig
 
 # GLOBAL VARIABLES
 gravity = 9.8
-damping = .99993
+dampening = .99993
 
 # CUSTOM FUNCTIONS
 def update_system(acc,pos,vel,time1,time2,armlength):
     # position and velocity update below
     dt = time2-time1
-    velNext = (vel+acc*dt)*damping
+    velNext = (vel+acc*dt)*dampening
     posNext = pos+vel*dt
     accNext = -1*(gravity/armlength)*math.sin(pos)
     return posNext,velNext,accNext
@@ -107,7 +107,7 @@ for armlength in lengths:
     vel = [0]
     acc = [0]
     time = np.linspace(0,35,35001)
-    print_system(time[0],pos[0],vel[0],acc[0])
+    #print_system(time[0],pos[0],vel[0],acc[0])
     i = 1
     while i < len(time):
         # update position and velocity using previous values and time step
@@ -118,5 +118,5 @@ for armlength in lengths:
         #print_system(time[i],pos[i],vel[i], acc[i])
         i += 1
     create_graph(time, pos, vel, acc)
-    print('The simulated period for', armlength, 'm is', find_avg_period(time, pos), 's')
+    #print('The simulated period for', armlength, 'm is', find_avg_period(time, pos), 's')
 
